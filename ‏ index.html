@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>بصمة قائدة - الابتدائية الستون</title>
+<style>
+body{font-family:Arial;text-align:center;background:#faf6ff;color:#513b60;margin:0}
+h1{color:#8051a2}
+.tree{font-size:110px;margin:25px}
+.leaf{display:inline-block;background:#d9c4ec;border-radius:50% 10%;padding:12px;margin:5px;border:1px solid #b49acb}
+form{background:white;padding:20px;margin:15px;border-radius:16px}
+input,textarea{display:block;width:90%;padding:12px;margin:10px auto;border:1px solid #d7c4e5;border-radius:8px;font-size:16px}
+button{background:#8051a2;color:white;padding:12px;border:0;border-radius:9px;font-size:16px}
+</style>
+</head>
+<body>
+<h1>🌳 بصمة قائدة</h1>
+<p>الابتدائية الستون</p>
+<div class="tree">🌳</div>
+<div id="leaves"></div>
+<form id="f">
+<h3>أضيفي بصمتك للقائدة 💜</h3>
+<input id="n" placeholder="اسم المعلمة" required>
+<textarea id="m" placeholder="عبارتك للمديرة حنان القربان" required></textarea>
+<button>أضيفي بصمتك</button>
+</form>
+<script>
+document.getElementById('f').onsubmit=function(e){
+e.preventDefault();
+let d=document.createElement('div');d.className='leaf';
+d.textContent=document.getElementById('n').value;
+d.onclick=()=>alert(document.getElementById('m').value);
+document.getElementById('leaves').appendChild(d);
+this.reset();
+};
+</script>
+</body>
+</html>
