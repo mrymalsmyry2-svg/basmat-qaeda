@@ -1,39 +1,289 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>بصمة قائدة - الابتدائية الستون</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>بصمة قائدة | الابتدائية الستون</title>
+
 <style>
-body{font-family:Arial;text-align:center;background:#faf6ff;color:#513b60;margin:0}
-h1{color:#8051a2}
-.tree{font-size:110px;margin:25px}
-.leaf{display:inline-block;background:#d9c4ec;border-radius:50% 10%;padding:12px;margin:5px;border:1px solid #b49acb}
-form{background:white;padding:20px;margin:15px;border-radius:16px}
-input,textarea{display:block;width:90%;padding:12px;margin:10px auto;border:1px solid #d7c4e5;border-radius:8px;font-size:16px}
-button{background:#8051a2;color:white;padding:12px;border:0;border-radius:9px;font-size:16px}
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: Tahoma, Arial, sans-serif;
+  text-align: center;
+  background: linear-gradient(#fbf8ff, #f0e7fa);
+  color: #49325c;
+}
+
+header { padding: 25px 12px 5px; }
+
+h1 {
+  color: #8051a2;
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  color: #725b82;
+  font-size: 17px;
+}
+
+.tree-area {
+  position: relative;
+  max-width: 550px;
+  height: 440px;
+  margin: 15px auto;
+  overflow: hidden;
+}
+
+.tree {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 65px;
+  height: 195px;
+  background: linear-gradient(90deg,#704329,#a36c43,#704329);
+  border-radius: 35% 35% 5px 5px;
+  z-index: 1;
+}
+
+.tree::before {
+  content: "";
+  position: absolute;
+  width: 26px;
+  height: 145px;
+  background: #865537;
+  left: -35px;
+  top: -90px;
+  transform: rotate(-48deg);
+  border-radius: 20px;
+}
+
+.tree::after {
+  content: "";
+  position: absolute;
+  width: 25px;
+  height: 145px;
+  background: #865537;
+  right: -32px;
+  top: -100px;
+  transform: rotate(43deg);
+  border-radius: 20px;
+}
+
+.crown {
+  position: absolute;
+  inset: 5px 5px 95px;
+  z-index: 2;
+}
+
+.leaf {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 83px;
+  height: 62px;
+  padding: 5px;
+  border: 2px solid #ffffff;
+  border-radius: 75% 25% 75% 25%;
+  transform: rotate(-12deg);
+  background: linear-gradient(140deg,#d9b7f1,#a77bd0,#8051a2);
+  color: white;
+  font-size: 13px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 3px 8px #8051a244;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+}
+
+.leaf:nth-child(even) {
+  transform: rotate(12deg);
+  background: linear-gradient(140deg,#e8d5fb,#b78bdd,#9261b5);
+}
+
+.leaf:active { transform: scale(.94); }
+
+.ground {
+  position: absolute;
+  bottom: 0;
+  left: 12%;
+  width: 76%;
+  height: 18px;
+  border-radius: 50%;
+  background: #b6a17c;
+}
+
+form {
+  background: white;
+  max-width: 450px;
+  margin: 20px auto;
+  padding: 22px;
+  border-radius: 20px;
+  box-shadow: 0 5px 20px #8051a21c;
+}
+
+h2 { color: #8051a2; font-size: 21px; }
+
+input, textarea {
+  width: 100%;
+  padding: 13px;
+  margin: 8px 0;
+  border: 1px solid #d8c7e5;
+  border-radius: 10px;
+  font: inherit;
+  text-align: right;
+}
+
+textarea { min-height: 90px; resize: vertical; }
+
+button.submit {
+  width: 100%;
+  padding: 13px;
+  border: 0;
+  border-radius: 10px;
+  background: #8051a2;
+  color: white;
+  font: inherit;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.note {
+  font-size: 13px;
+  color: #786b82;
+  line-height: 1.8;
+  padding: 0 15px 25px;
+}
+
+#message {
+  color: #8051a2;
+  font-weight: bold;
+}
 </style>
 </head>
+
 <body>
-<h1>🌳 بصمة قائدة</h1>
-<p>الابتدائية الستون</p>
-<div class="tree">🌳</div>
-<div id="leaves"></div>
-<form id="f">
-<h3>أضيفي بصمتك للقائدة 💜</h3>
-<input id="n" placeholder="اسم المعلمة" required>
-<textarea id="m" placeholder="عبارتك للمديرة حنان القربان" required></textarea>
-<button>أضيفي بصمتك</button>
+
+<header>
+  <h1>🌳 بصمة قائدة 🌳</h1>
+  <p class="subtitle">الابتدائية الستون</p>
+  <p>كل بصمة جميلة... تترك أثرًا لا يُنسى 💜</p>
+</header>
+
+<div class="tree-area">
+  <div class="tree"></div>
+  <div class="crown" id="leaves"></div>
+  <div class="ground"></div>
+</div>
+
+<form id="form">
+  <h2>💜 أضيفي بصمتك للقائدة</h2>
+
+  <input id="teacher"
+         type="text"
+         placeholder="اسم المعلمة"
+         maxlength="50"
+         required>
+
+  <textarea id="phrase"
+            placeholder="اكتبي عبارة شكر أو تقدير للمديرة"
+            maxlength="250"
+            required></textarea>
+
+  <button class="submit" type="submit">
+    أضيفي بصمتك 🌸
+  </button>
+
+  <p id="message"></p>
 </form>
+
+<p class="note">
+  بإهداء منسوبات الابتدائية الستون لقائدتنا الغالية 💜
+</p>
+
 <script>
-document.getElementById('f').onsubmit=function(e){
-e.preventDefault();
-let d=document.createElement('div');d.className='leaf';
-d.textContent=document.getElementById('n').value;
-d.onclick=()=>alert(document.getElementById('m').value);
-document.getElementById('leaves').appendChild(d);
-this.reset();
-};
+const leaves = document.getElementById("leaves");
+const form = document.getElementById("form");
+const message = document.getElementById("message");
+
+let phrases = [];
+
+try {
+  phrases = JSON.parse(
+    localStorage.getItem("basmatQaedaLeaves") || "[]"
+  );
+  if (!Array.isArray(phrases)) phrases = [];
+} catch (e) {
+  phrases = [];
+}
+
+const positions = [
+  [39, 2], [8, 12], [65, 14],
+  [26, 22], [49, 28], [2, 34],
+  [73, 36], [32, 43], [54, 48],
+  [12, 54], [67, 57], [39, 65]
+];
+
+function renderLeaves() {
+  leaves.innerHTML = "";
+
+  phrases.forEach((item, index) => {
+    const leaf = document.createElement("button");
+    leaf.type = "button";
+    leaf.className = "leaf";
+
+    const position = positions[index % positions.length];
+    leaf.style.left = position[0] + "%";
+    leaf.style.top = position[1] + "%";
+
+    leaf.textContent = item.name;
+    leaf.title = "اضغطي لقراءة البصمة";
+    leaf.setAttribute(
+      "aria-label",
+      "بصمة من " + item.name
+    );
+
+    leaf.addEventListener("click", () => {
+      alert(item.name + "\n\n" + item.phrase);
+    });
+
+    leaves.appendChild(leaf);
+  });
+}
+
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  const name = document.getElementById("teacher").value.trim();
+  const phrase = document.getElementById("phrase").value.trim();
+
+  if (!name || !phrase) return;
+
+  phrases.push({ name, phrase });
+
+  try {
+    localStorage.setItem(
+      "basmatQaedaLeaves",
+      JSON.stringify(phrases)
+    );
+  } catch (e) {
+    message.textContent =
+      "تعذّر حفظ البصمة على هذا الجهاز.";
+    return;
+  }
+
+  renderLeaves();
+  form.reset();
+  message.textContent = "تمت إضافة بصمتك بنجاح 💜";
+});
+
+renderLeaves();
 </script>
+
 </body>
 </html>
